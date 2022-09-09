@@ -13,7 +13,7 @@ public class Monster : MonoBehaviour
     {
         rb = GetComponent<Rigidbody2D>();
 
-        speed = 20f;
+        speed = 7f;
     }
 
     private void FixedUpdate()
