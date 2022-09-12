@@ -8,12 +8,14 @@ public class GameplayUIController : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         gameObject.SetActive(false);
+        Time.timeScale = 1;
     }
 
     public void Home()
     {
         SceneManager.LoadScene("MainMenu");
         gameObject.SetActive(false);
+        Time.timeScale = 1;
     }
     
     
