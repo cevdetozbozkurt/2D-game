@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveForce = 10f;
 
     [SerializeField] private float jumpForce = 20f;
+    
+    [SerializeField] private Canvas _canvas;
 
     private float _movementX;
     
@@ -95,14 +97,15 @@ public class Player : MonoBehaviour
     {
         if (col.gameObject.CompareTag(GROUND_TAG))
             _isGrounded = true;
-
-        if (col.gameObject.CompareTag(ENEMY_TAG))
-            Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D col)
     {
         if (col.CompareTag(ENEMY_TAG))
+        {
             Destroy(gameObject);
+            _canvas.gameObject.SetActive(true);
+        }
+            
     }
 }
