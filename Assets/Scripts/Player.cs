@@ -17,7 +17,7 @@ public class Player : MonoBehaviour
 
     private Animator _anim;
     
-    private Canvas _canvas;
+    public static Canvas _canvas;
 
     private string WALK_ANIMATION = "isWalk";
     private string JUMP_ANIMATION = "isJump";
@@ -35,11 +35,6 @@ public class Player : MonoBehaviour
         _anim = GetComponent<Animator>();
         _canvas = GameObject.FindGameObjectWithTag("Canvas").GetComponent<Canvas>();
         _canvas.gameObject.SetActive(false);
-    }
-
-    private void FixedUpdate()
-    {
-        
     }
 
     private void Update()
