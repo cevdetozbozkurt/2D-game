@@ -8,8 +8,6 @@ public class Player : MonoBehaviour
     [SerializeField] private float moveForce = 10f;
 
     [SerializeField] private float jumpForce = 20f;
-    
-    [SerializeField] private Canvas _canvas;
 
     private float _movementX;
     
@@ -18,6 +16,8 @@ public class Player : MonoBehaviour
     private SpriteRenderer _sr;
 
     private Animator _anim;
+    
+    private Canvas _canvas;
 
     private string WALK_ANIMATION = "isWalk";
     private string JUMP_ANIMATION = "isJump";
@@ -33,6 +33,8 @@ public class Player : MonoBehaviour
         _rb = GetComponent<Rigidbody2D>();
         _sr = GetComponent<SpriteRenderer>();
         _anim = GetComponent<Animator>();
+        _canvas = GameObject.FindGameObjectWithTag("Canvas").GetComponent<Canvas>();
+        _canvas.gameObject.SetActive(false);
     }
 
     private void FixedUpdate()
@@ -97,6 +99,12 @@ public class Player : MonoBehaviour
     {
         if (col.gameObject.CompareTag(GROUND_TAG))
             _isGrounded = true;
+        if (col.gameObject.CompareTag(ENEMY_TAG))
+        {
+            Destroy(gameObject);
+            _canvas.gameObject.SetActive(true);
+            Time.timeScale = 0;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D col)
@@ -105,6 +113,7 @@ public class Player : MonoBehaviour
         {
             Destroy(gameObject);
             _canvas.gameObject.SetActive(true);
+            Time.timeScale = 0;
         }
             
     }
